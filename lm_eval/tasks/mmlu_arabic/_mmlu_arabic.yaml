@@ -1,0 +1,12 @@
+group: mmlu_arabic
+task:
+  - mmlu_arabic_social_sciences
+  - mmlu_arabic_language
+  - mmlu_arabic_stem
+  - mmlu_arabic_humanities
+  - mmlu_arabic_other
+aggregate_metric_list:
+  - metric: acc
+    weight_by_size: True
+metadata:
+  version: 1

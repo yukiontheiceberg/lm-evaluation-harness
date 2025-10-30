@@ -1,0 +1,7 @@
+"dataset_name": "Geography (High School)"
+"description": "The following are multiple choice questions (with answers) about geography\
+  \ (high school).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_social_sciences_tasks"
+"task": "mmlu_arabic_Geography (High School)"
+"task_alias": "geography (high school)"

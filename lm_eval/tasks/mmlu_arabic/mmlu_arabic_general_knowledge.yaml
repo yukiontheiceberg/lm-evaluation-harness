@@ -1,0 +1,7 @@
+"dataset_name": "General Knowledge"
+"description": "The following are multiple choice questions (with answers) about general\
+  \ knowledge.\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_other_tasks"
+"task": "mmlu_arabic_General Knowledge"
+"task_alias": "general knowledge"

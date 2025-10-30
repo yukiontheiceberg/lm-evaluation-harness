@@ -1,0 +1,18 @@
+group: minerva_math_reasoning_base
+task:
+  - minerva_math_reasoning_base_algebra
+  - minerva_math_reasoning_base_counting_and_prob
+  - minerva_math_reasoning_base_geometry
+  - minerva_math_reasoning_base_intermediate_algebra
+  - minerva_math_reasoning_base_num_theory
+  - minerva_math_reasoning_base_prealgebra
+  - minerva_math_reasoning_base_precalc
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+  - metric: math_verify
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

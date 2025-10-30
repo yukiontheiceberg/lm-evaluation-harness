@@ -24,7 +24,7 @@ from lm_eval.tasks.ruler.common_utils import DEFAULT_SEQ_LENGTHS, get_tokenizer
 CONFIG = {
     "tokens_to_generate": 120,
     "template": """Below is a numbered list of words. In these words, some appear more often than others. Memorize the ones that appear most often.\n{context}\nQuestion: What are the 10 most common words in the above list?""",
-    "answer_prefix": """ Answer: The top 10 words that appear most often in the list are:""",
+    "answer_prefix": """ Answer: The top 10 words that appear most often in the list are:\n1. """,
 }
 
 RNG = random.Random(42)

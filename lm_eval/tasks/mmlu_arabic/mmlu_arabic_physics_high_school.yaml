@@ -1,0 +1,7 @@
+"dataset_name": "Physics (High School)"
+"description": "The following are multiple choice questions (with answers) about physics\
+  \ (high school).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_stem_tasks"
+"task": "mmlu_arabic_Physics (High School)"
+"task_alias": "physics (high school)"

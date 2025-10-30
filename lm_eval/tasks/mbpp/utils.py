@@ -5,12 +5,12 @@ import evaluate as hf_evaluate
 
 
 try:
-    pass_at_k = hf_evaluate.load("code_eval")
+    compute_ = hf_evaluate.load("code_eval")
 
     # run simple test to check code execution is enabled before model generation
     test_cases = ["assert add(2, 3)==5"]
     candidates = [["def add(a,b): return a*b"]]
-    results = pass_at_k.compute(references=test_cases, predictions=candidates, k=[1])
+    results = compute_.compute(references=test_cases, predictions=candidates, k=[1])
 except Exception as e:
     raise e
 
@@ -22,26 +22,78 @@ def pass_at_1(
         references = [references]
     if isinstance(predictions[0], str):
         predictions = [[p] for p in predictions]
-    return pass_at_k.compute(
+    return compute_.compute(
         references=references,
         predictions=predictions,
         k=[1],
     )[0]["pass@1"]
 
+def pass_at_k(references: list[str], predictions: list[list[str]], k: list[int] = None):
+    global compute_
+    assert k is not None
+    if isinstance(k, int):
+        k = [k]
+    res = compute_.compute(
+        references=references,
+        predictions=predictions,
+        k=k,
+    )
+    return res[0]
+
 
 def extract_code_blocks(text: str) -> str:
-    # Pattern to match ```...``` blocks
-    pattern = r"```(?:\w+)?\n?(.*?)\n?```"
-    # (+ ```) as we add the opening "```python" to the gen_prefix
-    matches = re.findall(pattern, r"```" + text, re.DOTALL)
-    # if no matches, try to match ```...``` blocks (after removing the language)
-    if not matches:
-        text_without_lang = re.sub(r"```python", "```", text)
-        matches = re.findall(pattern, text_without_lang, re.DOTALL)
-    if not matches:
-        return ""
+    final_str = text
+    if '</think>' in text:
+        processed_str = '<think>' + text
+        # First, extract and remove thinking content between <think> and </think> tags
+        think_pattern = r'<think>(.*?)</think>'
+        think_matches = list(re.finditer(think_pattern, processed_str, re.DOTALL))
+
+        if think_matches:
+            # Remove all thinking content from the processed string
+            for match in reversed(think_matches):  # Process in reverse order to maintain indices
+                start, end = match.span()
+                processed_str = processed_str[:start] + processed_str[end:]
+                # Extract final answer using XML-style tags
+                answer_pattern = r'<answer>(.*?)</answer>'
+                matches = list(re.finditer(answer_pattern, processed_str, re.DOTALL))
+                if not matches:
+                    final_str = processed_str
+                else:
+                    final_str = matches[-1].group(1).strip()
     else:
-        return matches[0]
+        print("[Error] No valid think tags found. Returning as is")
+    # print(final_str)
+    # Pattern to match ```...``` blocks
+    if "```" in final_str:
+        pattern = r"```(?:\w+)?\n?(.*?)\n?```"
+        # (+ ```) as we add the opening "```python" to the gen_prefix
+        matches = re.findall(pattern, final_str, re.DOTALL)
+        # if no matches, try to match ```...``` blocks (after removing the language)
+        if not matches:
+            text_without_lang = re.sub(r"```python", "```", text)
+            matches = re.findall(pattern, text_without_lang, re.DOTALL)
+        if not matches:
+            return ""
+        else:
+            return matches[0]
+    else:
+        return final_str
+
+
+# def extract_code_blocks(text: str) -> str:
+#     # Pattern to match ```...``` blocks
+#     pattern = r"```(?:\w+)?\n?(.*?)\n?```"
+#     # (+ ```) as we add the opening "```python" to the gen_prefix
+#     matches = re.findall(pattern, r"```" + text, re.DOTALL)
+#     # if no matches, try to match ```...``` blocks (after removing the language)
+#     if not matches:
+#         text_without_lang = re.sub(r"```python", "```", text)
+#         matches = re.findall(pattern, text_without_lang, re.DOTALL)
+#     if not matches:
+#         return ""
+#     else:
+#         return matches[0]
 
 
 def build_predictions(resps: list[list[str]], docs: list[dict]) -> list[list[str]]:

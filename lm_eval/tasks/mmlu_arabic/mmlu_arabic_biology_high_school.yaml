@@ -1,0 +1,7 @@
+"dataset_name": "Biology (High School)"
+"description": "The following are multiple choice questions (with answers) about biology\
+  \ (high school).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_stem_tasks"
+"task": "mmlu_arabic_Biology (High School)"
+"task_alias": "biology (high school)"

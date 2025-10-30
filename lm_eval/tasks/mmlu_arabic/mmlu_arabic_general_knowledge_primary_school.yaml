@@ -1,0 +1,7 @@
+"dataset_name": "General Knowledge (Primary School)"
+"description": "The following are multiple choice questions (with answers) about general\
+  \ knowledge (primary school).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_other_tasks"
+"task": "mmlu_arabic_General Knowledge (Primary School)"
+"task_alias": "general knowledge (primary school)"

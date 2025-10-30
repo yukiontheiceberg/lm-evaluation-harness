@@ -1,0 +1,7 @@
+"dataset_name": "Natural Science (Middle School)"
+"description": "The following are multiple choice questions (with answers) about natural\
+  \ science (middle school).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_stem_tasks"
+"task": "mmlu_arabic_Natural Science (Middle School)"
+"task_alias": "natural science (middle school)"

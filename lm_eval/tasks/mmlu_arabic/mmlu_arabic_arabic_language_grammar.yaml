@@ -1,0 +1,7 @@
+"dataset_name": "Arabic Language (Grammar)"
+"description": "The following are multiple choice questions (with answers) about arabic\
+  \ language (grammar).\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_language_tasks"
+"task": "mmlu_arabic_Arabic Language (Grammar)"
+"task_alias": "arabic language (grammar)"

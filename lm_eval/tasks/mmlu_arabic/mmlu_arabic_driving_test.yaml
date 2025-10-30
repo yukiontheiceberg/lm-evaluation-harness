@@ -1,0 +1,7 @@
+"dataset_name": "Driving Test"
+"description": "The following are multiple choice questions (with answers) about driving\
+  \ test.\n\n"
+"include": "_default_template_yaml"
+"tag": "mmlu_arabic_other_tasks"
+"task": "mmlu_arabic_Driving Test"
+"task_alias": "driving test"
